@@ -39,4 +39,19 @@ public class PostLikeService {
         log.info("Posts with ID : {} liked successfully", postId);
     }
 
+    public void unlikePost(Long postId, Long userId) {
+        log.info("Attempting to un-like the post with ID : {}", postId);
+        boolean exists = postsRepository.existsById(postId);
+        if (!exists) {
+            throw new ResourceNotFoundException("Post not found with id: " + postId);
+        }
+
+        boolean alreadyLiked = postLikeRepository.existsByUserIdAndPostId(userId, postId);
+        if (!alreadyLiked) throw new BadRequestException("Cannot un-like which is not liked.");
+
+        postLikeRepository.deleteByUserIdAndPostId(userId, postId);
+
+        log.info("Posts with ID : {} un-liked successfully", postId);
+    }
+
 }

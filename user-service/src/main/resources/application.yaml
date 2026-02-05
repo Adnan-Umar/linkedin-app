@@ -1,3 +1,20 @@
 spring:
   application:
     name: user-service
+
+# DB Configuration
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+# Server port
+server:
+  port: 9020
+
+# Jwt Secret Key
+jwt:
+  secretKey: kljfhqa4uiowy93w84y90238q467v598ybvjalfi3uyo7qi24q347q98377
