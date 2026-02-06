@@ -9,11 +9,22 @@ spring:
     password: ${DB_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+
+# Eureka Client Configuration
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
 
 # Server port
 server:
   port: 9020
+
+  servlet:
+    context-path: /users
 
 # Jwt Secret Key
 jwt:
