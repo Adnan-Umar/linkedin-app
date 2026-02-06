@@ -1,3 +1,23 @@
 spring:
   application:
     name: connections-service
+
+# neo4j (graphDB) configuration
+  neo4j:
+    uri: ${NEO4J_DB_URL}
+    authentication:
+      username: ${NEO4J_DB_USERNAME}
+      password: ${NEO4J_DB_PASSWORD}
+
+server:
+  port: 9030
+  servlet:
+    context-path: /connections
+
+# Eureka Client Configuration
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
