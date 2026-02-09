@@ -1,5 +1,6 @@
 package com.adnanumar.linkedin.posts_service.service;
 
+import com.adnanumar.linkedin.posts_service.auth.UserContextHolder;
 import com.adnanumar.linkedin.posts_service.dto.PostCreateRequestDto;
 import com.adnanumar.linkedin.posts_service.dto.PostDto;
 import com.adnanumar.linkedin.posts_service.entity.Post;
@@ -35,6 +36,7 @@ public class PostsService {
 
     public PostDto getPostById(Long postId) {
         log.info("Get Post by ID : {}", postId);
+        Long userId = UserContextHolder.getCurrentUserId();
         Post post = postsRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not found with id " + postId));
         return modelMapper.map(post, PostDto.class);
