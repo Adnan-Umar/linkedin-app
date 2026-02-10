@@ -1,6 +1,8 @@
 package com.adnanumar.linkedin.posts_service.service;
 
 import com.adnanumar.linkedin.posts_service.auth.UserContextHolder;
+import com.adnanumar.linkedin.posts_service.clients.ConnectionsClient;
+import com.adnanumar.linkedin.posts_service.dto.PersonDto;
 import com.adnanumar.linkedin.posts_service.dto.PostCreateRequestDto;
 import com.adnanumar.linkedin.posts_service.dto.PostDto;
 import com.adnanumar.linkedin.posts_service.entity.Post;
@@ -26,6 +28,8 @@ public class PostsService {
 
     final ModelMapper modelMapper;
 
+    final ConnectionsClient connectionsClient;
+
     public PostDto createPost(PostCreateRequestDto postDto, Long userId) {
         log.info("Post Create by user with ID : {}", userId);
         Post post = modelMapper.map(postDto, Post.class);
@@ -37,6 +41,8 @@ public class PostsService {
     public PostDto getPostById(Long postId) {
         log.info("Get Post by ID : {}", postId);
         Long userId = UserContextHolder.getCurrentUserId();
+        List<PersonDto> firstConnections = connectionsClient.getFirstConnections();
+//        TODO: send notification to all connections
         Post post = postsRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not found with id " + postId));
         return modelMapper.map(post, PostDto.class);

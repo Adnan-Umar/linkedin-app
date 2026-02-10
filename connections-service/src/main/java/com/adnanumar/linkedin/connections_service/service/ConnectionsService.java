@@ -1,5 +1,6 @@
 package com.adnanumar.linkedin.connections_service.service;
 
+import com.adnanumar.linkedin.connections_service.auth.UserContextHolder;
 import com.adnanumar.linkedin.connections_service.entity.Person;
 import com.adnanumar.linkedin.connections_service.repository.PersonRepository;
 import lombok.AccessLevel;
@@ -18,7 +19,8 @@ public class ConnectionsService {
 
     final PersonRepository personRepository;
 
-    public List<Person> getFirstDegreeConnections(Long userId) {
+    public List<Person> getFirstDegreeConnections() {
+        Long userId = UserContextHolder.getCurrentUserId();
         log.info("Getting first degree connections for user {}", userId);
         return personRepository.getFirstDegreeConnections(userId);
     }
