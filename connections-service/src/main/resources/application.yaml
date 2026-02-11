@@ -9,6 +9,13 @@ spring:
       username: ${NEO4J_DB_USERNAME}
       password: ${NEO4J_DB_PASSWORD}
 
+# Kafka Configuration
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.LongSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
 server:
   port: 9030
   servlet:
