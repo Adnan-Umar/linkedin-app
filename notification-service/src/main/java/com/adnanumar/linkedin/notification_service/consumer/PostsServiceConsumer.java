@@ -2,8 +2,7 @@ package com.adnanumar.linkedin.notification_service.consumer;
 
 import com.adnanumar.linkedin.notification_service.clients.ConnectionsClient;
 import com.adnanumar.linkedin.notification_service.dto.PersonDto;
-import com.adnanumar.linkedin.notification_service.entity.Notification;
-import com.adnanumar.linkedin.notification_service.repository.NotificationRepository;
+import com.adnanumar.linkedin.notification_service.service.SendNotification;
 import com.adnanumar.linkedin.posts_service.event.PostCreatedEvent;
 import com.adnanumar.linkedin.posts_service.event.PostLikedEvent;
 import lombok.AccessLevel;
@@ -23,7 +22,7 @@ public class PostsServiceConsumer {
 
     final ConnectionsClient connectionsClient;
 
-    final NotificationRepository notificationRepository;
+    final SendNotification sendNotification;
 
     @KafkaListener(topics = "post-created-topic")
     public void handlePostCreated(PostCreatedEvent postCreatedEvent) {
@@ -31,7 +30,7 @@ public class PostsServiceConsumer {
         List<PersonDto> connections = connectionsClient.getFirstConnections(postCreatedEvent.getCreatorId());
 
         for(PersonDto connection : connections){
-            sendNotification(connection.getUserId(), "Your connection " + postCreatedEvent.getCreatorId()
+            sendNotification.send(connection.getUserId(), "Your connection " + postCreatedEvent.getCreatorId()
                     + " has created a post, Check it out");
         }
     }
@@ -42,15 +41,7 @@ public class PostsServiceConsumer {
         String message = String.format("Your post, %d has been liked by %d", postLikedEvent.getPostId(),
                 postLikedEvent.getLikeByUserId());
 
-        sendNotification(postLikedEvent.getCreatorId(), message);
-    }
-
-    public void sendNotification(Long userId, String message) {
-        Notification notification = new Notification();
-        notification.setUserId(userId);
-        notification.setMessage(message);
-
-        notificationRepository.save(notification);
+        sendNotification.send(postLikedEvent.getCreatorId(), message);
     }
 
 }
