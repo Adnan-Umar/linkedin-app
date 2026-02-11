@@ -2,7 +2,6 @@ package com.adnanumar.linkedin.connections_service.controller;
 
 import com.adnanumar.linkedin.connections_service.entity.Person;
 import com.adnanumar.linkedin.connections_service.service.ConnectionsService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
