@@ -4,9 +4,12 @@ spring:
 
 # DB Configuration
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://user-db:5432/userDB
+    username: user
+    password: password
+#    url: ${DB_URL}
+#    username: ${DB_USERNAME}
+#    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
@@ -15,7 +18,8 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://discovery-server:8761/eureka
+#      defaultZone: http://localhost:8761/eureka
   instance:
     prefer-ip-address: true
 
