@@ -95,7 +95,7 @@ services:
       - linkedin-network
 
   discovery-server:
-    image: nouman886/linkedin-app/discovery-server
+    image: nouman886/linkedin-app-discovery-server
     container_name: discovery-server
     networks:
       - linkedin-network
@@ -103,7 +103,7 @@ services:
       - "8761:8761"
 
   posts-service:
-    image: nouman886/linkedin-app/posts-service
+    image: nouman886/linkedin-app-posts-service
     container_name: posts-service
     networks:
       - linkedin-network
@@ -113,7 +113,7 @@ services:
       - kafka
 
   user-service:
-    image: nouman886/linkedin-app/user-service
+    image: nouman886/linkedin-app-user-service
     container_name: user-service
     networks:
       - linkedin-network
@@ -123,7 +123,7 @@ services:
       - kafka
 
   notification-service:
-    image: nouman886/linkedin-app/notification-service
+    image: nouman886/linkedin-app-notification-service
     container_name: notification-service
     networks:
       - linkedin-network
@@ -133,7 +133,7 @@ services:
       - kafka
 
   connections-service:
-    image: nouman886/linkedin-app/connections-service
+    image: nouman886/linkedin-app-connections-service
     container_name: connections-service
     networks:
       - linkedin-network
