@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: connections-db
+spec:
+  selector:
+    matchLabels:
+      app: connections-db
+  serviceName: connections-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: connections-db
+    spec:
+      containers:
+      - name: connections-db
+        image: neo4j
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+        env:
+          - name: NEO4J_AUTH
+            value: neo4j/password # Default username and password for Neo4j
+        ports:
+        - containerPort: 7687
+          name: bolt
+        volumeMounts:
+        - name: data
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+      storageClassName: "standard"
+      volumeMode: Filesystem
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: connections-db
+spec:
+  clusterIP: None # Headless service not delaing with load balancing
+  selector:
+    app: connections-db
+  ports:
+  - port: 7687
+    targetPort: 7687

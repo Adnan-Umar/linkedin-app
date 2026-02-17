@@ -1,0 +1,5 @@
+# disable eureka properties
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
