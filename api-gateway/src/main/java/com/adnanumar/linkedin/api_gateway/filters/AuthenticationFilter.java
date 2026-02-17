@@ -4,17 +4,19 @@ import com.adnanumar.linkedin.api_gateway.JwtService;
 import io.jsonwebtoken.JwtException;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 
-@Slf4j
 @Component
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
+
+    private static final Logger log = LoggerFactory.getLogger(AuthenticationFilter.class);
 
     final JwtService jwtService;
 

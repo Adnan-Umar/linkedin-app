@@ -143,7 +143,7 @@ services:
       - kafka
 
   api-gateway:
-    image: nouman886/linkedin-app/api-gateway
+    image: nouman886/linkedin-app-api-gateway
     container_name: api-gateway
     ports:
       - "8080:8080"
