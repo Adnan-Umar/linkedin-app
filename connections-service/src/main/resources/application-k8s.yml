@@ -9,3 +9,4 @@ USER_SERVICE_URL: http://user-service
 POSTS_SERVICE_URL: http://posts-service
 CONNECTIONS_SERVICE_URL: http://connections-service
 NOTIFICATION_SERVICE_URL: http://notification-service
+

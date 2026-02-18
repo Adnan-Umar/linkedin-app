@@ -4,7 +4,6 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
 
-
 USER_SERVICE_URL: http://user-service
 POSTS_SERVICE_URL: http://posts-service
 CONNECTIONS_SERVICE_URL: http://connections-service
