@@ -1,3 +1,19 @@
 spring:
   application:
     name: uploader-service
+
+# Cloudinary Configuration
+cloudinary:
+  cloud-name: derirmyhi #${CLOUDINARY_CLOUD_NAME}
+  api-key: 654678166576368 #${CLOUDINARY_API_KEY}
+  api-secret: 7xzVOcXYrVSCYYeIMMvZvl8FG5c #${CLOUDINARY_SECRET_KEY}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+server:
+  servlet:
+    context-path: /uploads
+  port: 9050
