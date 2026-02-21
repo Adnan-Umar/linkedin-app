@@ -89,12 +89,19 @@ Handles media uploads (images/videos) to the cloud.
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### 1. Clone the Repository
+First, clone the project to your local machine:
+```bash
+git clone https://github.com/Adnan-Umar/linkedin-app.git
+cd linkedin-app
+```
+
+### 2. Prerequisites
 - Java 17 or higher
 - Maven 3.x
 - Docker & Docker Compose
 
-### Build and Package
+### 3. Build and Package
 To build all services locally:
 ```bash
 # In each service directory
@@ -102,7 +109,7 @@ mvn clean install
 ```
 Alternatively, you can build Docker images for each service using the provided `Dockerfile` in each folder.
 
-### Running with Docker Compose
+### 4. Running with Docker Compose
 To spin up the entire infrastructure (Databases, Kafka, and Services) at once:
 
 ```bash
