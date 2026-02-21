@@ -4,9 +4,9 @@ spring:
 
 # Cloudinary Configuration
 cloudinary:
-  cloud-name: derirmyhi #${CLOUDINARY_CLOUD_NAME}
-  api-key: 654678166576368 #${CLOUDINARY_API_KEY}
-  api-secret: 7xzVOcXYrVSCYYeIMMvZvl8FG5c #${CLOUDINARY_SECRET_KEY}
+  cloud-name: ${CLOUDINARY_CLOUD_NAME}
+  api-key: ${CLOUDINARY_API_KEY}
+  api-secret: ${CLOUDINARY_SECRET_KEY}
 
 eureka:
   client:
